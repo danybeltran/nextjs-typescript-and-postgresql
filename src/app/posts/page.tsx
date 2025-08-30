@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
 import { headers } from 'next/headers'
 
 import { Button } from '@/components/ui'
@@ -8,6 +7,11 @@ import PostCard from '@/components/post/post-card'
 import { prisma } from '@/lib/server/prisma'
 import { RenderList } from 'atomic-utils'
 import { BackButton } from '@/components/layout/back-button'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Posts'
+}
 
 export const revalidate = 0
 

@@ -1,10 +1,16 @@
-import { revalidate, useObject, useServerAction } from 'atomic-utils'
+import {
+  mutateData,
+  revalidate,
+  useObject,
+  useServerAction
+} from 'atomic-utils'
 import { updateUserPreferences } from './actions'
 
 import { Button, Input, Textarea } from '@/components/ui'
 import { VscLoading } from 'react-icons/vsc'
 import { UpdatePreferencesPayload } from '@/schemas'
 import { usePreferences } from '@/hooks/use-preferences'
+import { SaveIcon } from 'lucide-react'
 
 export default function UpdateProfile() {
   const { data: preferences } = usePreferences()
@@ -18,7 +24,8 @@ export default function UpdateProfile() {
   const { reFetch: savePreferences, isPending: savingPreferences } =
     useServerAction(updateUserPreferences, {
       params: newPreferences,
-      onResolve() {
+      onResolve(updatedPreferences) {
+        mutateData(['Preferences', updatedPreferences])
         revalidate('Preferences')
       }
     })
@@ -41,6 +48,7 @@ export default function UpdateProfile() {
           <small>Full name</small>
           <Input
             placeholder='Add a name'
+            disabled={savingPreferences}
             value={newPreferences.user_fullname}
             onChange={e =>
               newPreferencesActions.setPartialValue({
@@ -56,6 +64,7 @@ export default function UpdateProfile() {
           <small>Bio</small>
           <Textarea
             className='h-24 resize-none'
+            disabled={savingPreferences}
             placeholder='Add a description'
             value={newPreferences.user_description}
             onChange={e =>
@@ -72,12 +81,17 @@ export default function UpdateProfile() {
           <Button
             variant='ghost'
             type='button'
+            disabled={savingPreferences}
             onClick={newPreferencesActions.reset}
           >
             Cancel
           </Button>
-          <Button type='submit'>
-            {savingPreferences && <VscLoading className='animate-spin' />}
+          <Button type='submit' disabled={savingPreferences}>
+            {savingPreferences ? (
+              <VscLoading className='animate-spin' />
+            ) : (
+              <SaveIcon />
+            )}
             Save
           </Button>
         </div>
