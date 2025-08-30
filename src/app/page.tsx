@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { GoPlus } from 'react-icons/go'
 import { FaReact } from 'react-icons/fa'
-import { BiLogoMongodb, BiLogoPostgresql } from 'react-icons/bi'
+import { BiLogoPostgresql } from 'react-icons/bi'
 import { TbBrandNextjs } from 'react-icons/tb'
 import { SiPrisma, SiTailwindcss } from 'react-icons/si'
 import { IoLogoGithub, IoLogoVercel } from 'react-icons/io5'

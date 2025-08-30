@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui'
-import Icon from 'bs-icon'
 import Link from 'next/link'
 
 export default function NotFound() {

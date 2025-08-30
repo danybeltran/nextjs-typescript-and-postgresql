@@ -1,7 +1,5 @@
 'use client'
 
-import { IoIosLogIn } from 'react-icons/io'
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,27 +16,30 @@ import {
   AlertDialogCancel,
   AlertDialogDescription,
   AlertDialogAction,
-  AlertDialogFooter
+  AlertDialogFooter,
+  Button
 } from '@/components/ui'
 
-import { usePreferences, useUser } from '@/hooks'
 import { useState } from 'react'
 import { signOut } from 'next-auth/react'
-import Icon from 'bs-icon'
 import SigninDialog from './signin-dialog'
+import { useClientSession } from '@/hooks/use-client-session'
+import { usePreferences } from '@/hooks/use-preferences'
+import { LogInIcon, LogOutIcon, Settings } from 'lucide-react'
+import Link from 'next/link'
 
 export default function AuthButton() {
-  const { data: user } = useUser()
+  const { data: session } = useClientSession()
   const { data: preferences } = usePreferences()
 
   const [showSignoutDialog, setShowSignoutDialog] = useState(false)
 
-  if (!user) {
+  if (!session) {
     return (
       <SigninDialog>
-        <button className='rounded-full text-xl p-2'>
-          <IoIosLogIn />
-        </button>
+        <Button variant='ghost' size='icon' className='rounded-full'>
+          <LogInIcon />
+        </Button>
       </SigninDialog>
     )
   }
@@ -61,29 +62,33 @@ export default function AuthButton() {
               }
             >
               Sign out
-              <Icon name='box-arrow-right' />
+              <LogOutIcon />
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <Avatar className='w-8 h-8'>
+          <Avatar className='w-8 h-8 cursor-pointer'>
             <AvatarImage src={preferences.user_profile_picture} alt='@shadcn' />
             <AvatarFallback>
               <img src={preferences.user_profile_picture} alt='' />
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className='mr-4'>
           <DropdownMenuLabel>{preferences.user_fullname}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-
+          <DropdownMenuItem asChild className='cursor-pointer'>
+            <Link href='/settings'>
+              <Settings /> Settings
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem
             className='cursor-pointer'
             onClick={() => setShowSignoutDialog(true)}
           >
-            Logout
+            <LogOutIcon /> Sign out
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

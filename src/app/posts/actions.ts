@@ -2,10 +2,11 @@
 import { revalidatePath } from 'next/cache'
 import { actionData } from 'atomic-utils'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/lib/server/prisma'
 import { postSchema } from '@/schemas'
+import z from 'zod'
 
-export async function createPost(post: any) {
+export async function createPost(post: z.infer<typeof postSchema>) {
   try {
     const validation = postSchema.safeParse(post)
 

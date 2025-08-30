@@ -5,7 +5,9 @@ import { ArrowLeft } from 'lucide-react'
 import PostDeleteButton from '@/components/post/post-delete-button'
 import PostDetails from '@/components/post/post-details'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/lib/server/prisma'
+import { Button } from '@/components/ui'
+import { BackButton } from '@/components/layout/back-button'
 
 export async function generateMetadata(props: PostPageProps) {
   const params = await props.params
@@ -24,10 +26,7 @@ export default async function PostDetailsPage(props: PostPageProps) {
 
   return (
     <section>
-      <Link href='/posts' className='flex gap-1 items-center max-w-min'>
-        <ArrowLeft size={18} />
-        Back
-      </Link>
+      <BackButton href='/posts' />
       {post ? (
         <div className='max-w-4xl gap-2 mt-4 mx-auto flex flex-col lg:flex-row'>
           <div className='flex-10'>

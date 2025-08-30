@@ -1,7 +1,7 @@
 'use server'
 
-import { getUserPreferences } from '@/lib/preferences'
-import { prisma } from '@/lib/prisma'
+import { getUserPreferences } from '@/lib/server/preferences'
+import { prisma } from '@/lib/server/prisma'
 import { UpdatePreferencesPayload } from '@/schemas'
 import { actionData } from 'atomic-utils'
 

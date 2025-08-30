@@ -39,7 +39,7 @@ export default function SigninDialog({
         <DialogTitle>Sign in to your account</DialogTitle>
 
         <DialogDescription>
-          Sign in to one of the available providers
+          Sign in with one of the available providers
         </DialogDescription>
 
         <Button onClick={attemptGoogleSignin} variant='outline' size='lg'>

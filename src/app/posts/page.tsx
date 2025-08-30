@@ -5,8 +5,9 @@ import { headers } from 'next/headers'
 import { Button } from '@/components/ui'
 import PostCard from '@/components/post/post-card'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/lib/server/prisma'
 import { RenderList } from 'atomic-utils'
+import { BackButton } from '@/components/layout/back-button'
 
 export const revalidate = 0
 
@@ -17,10 +18,7 @@ export default async function Posts() {
 
   return (
     <section>
-      <Link href='/' className='flex gap-1 items-center max-w-min'>
-        <ArrowLeft size={18} />
-        Back
-      </Link>
+      <BackButton href='/' />
       <header className='flex items-center justify-between my-4 md:my-8'>
         <h1 className='font-bold text-2xl'>All Posts</h1>
         <Link href='/posts/create'>
