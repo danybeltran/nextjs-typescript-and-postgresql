@@ -20,7 +20,7 @@ const useGetLinksStyle = () => {
   const pathname = usePathname()
   return function getLinkStyles(href: string) {
     return cn('text-sm text-foreground/70 hover:text-foreground', {
-      'text-blue-700 dark:text-blue-400 font-medium hover:text-blue-700':
+      'text-blue-700 dark:text-blue-400 hover:text-blue-700':
         pathname.startsWith(href)
     })
   }

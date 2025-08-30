@@ -9,12 +9,12 @@ export const LINKS: {
     href: '/posts'
   },
   {
-    children: 'Profile',
+    children: 'Settings',
     href: '/settings'
   },
   {
     children: 'Github',
-    href: 'https://github.com/danybeltran/nextjs-typescript-and-mongodb',
+    href: 'https://github.com/danybeltran/nextjs-typescript-and-postgresql',
     target: '_blank',
     rel: 'noreferrer'
   }

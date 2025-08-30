@@ -3,7 +3,7 @@ import { GoPlus } from 'react-icons/go'
 import { FaReact } from 'react-icons/fa'
 import { BiLogoPostgresql } from 'react-icons/bi'
 import { TbBrandNextjs } from 'react-icons/tb'
-import { SiPrisma, SiTailwindcss } from 'react-icons/si'
+import { SiPrisma, SiShadcnui, SiTailwindcss } from 'react-icons/si'
 import { IoLogoGithub, IoLogoVercel } from 'react-icons/io5'
 
 import { Button } from '@/components/ui'
@@ -19,7 +19,7 @@ export default function Page() {
           <p>This is a starter project</p>
           <div className='flex gap-x-2 *:*:gap-x-2'>
             <Link
-              href='https://github.com/danybeltran/nextjs-typescript-and-mongodb'
+              href='https://github.com/danybeltran/nextjs-typescript-and-postgresql'
               target='_blank'
               rel='noreferrer'
             >
@@ -30,7 +30,7 @@ export default function Page() {
             </Link>
             <Link
               target='_blank'
-              href='https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdanybeltran%2Fnextjs-typescript-and-mongodb'
+              href='https://vercel.com/new/clone?repository-url=https://github.com/danybeltran/nextjs-typescript-and-postgresql'
             >
               <Button>
                 <IoLogoVercel /> Deploy
@@ -53,8 +53,8 @@ export default function Page() {
             <div className='flex h-[180px] flex-col justify-center gap-y-4 items-center rounded-md p-6'>
               <TbBrandNextjs size={40} />
               <div className='space-y-2'>
-                <h3 className='font-bold leading-normal'>Next.js 14</h3>
-                <p className='text-sm text-muted-foreground'>App dir</p>
+                <h3 className='font-bold leading-normal'>Next.js 15</h3>
+                <p className='text-sm text-muted-foreground'>Next.js</p>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function Page() {
             <div className='flex h-[180px] flex-col justify-center gap-y-4 items-center rounded-md p-6'>
               <FaReact size={40} />
               <div className='space-y-2'>
-                <h3 className='font-bold leading-normal'>React 18</h3>
+                <h3 className='font-bold leading-normal'>React 19</h3>
                 <p className='text-sm text-muted-foreground'>
                   Server and Client Components
                 </p>
@@ -86,7 +86,7 @@ export default function Page() {
           </div>
           <div className='relative overflow-hidden rounded-lg border bg-background p-2 text-center'>
             <div className='flex h-[180px] flex-col justify-center gap-y-4 items-center rounded-md p-6'>
-              <SiTailwindcss size={40} />
+              <SiShadcnui size={40} />
               <div className='space-y-2'>
                 <h3 className='font-bold leading-normal'>ShadCN</h3>
                 <p className='text-sm text-muted-foreground'>
@@ -105,7 +105,7 @@ export default function Page() {
           <p className='max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7'>
             The code is available on{' '}
             <Link
-              href='https://github.com/danybeltran/nextjs-typescript-and-mongodb'
+              href='https://github.com/danybeltran/nextjs-typescript-and-postgresql'
               target='_blank'
               rel='noreferrer'
               className='underline underline-offset-4'

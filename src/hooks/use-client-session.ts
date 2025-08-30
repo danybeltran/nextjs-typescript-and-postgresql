@@ -1,5 +1,4 @@
-import { actionData, fetchOptions, revalidate, useFetch } from 'atomic-utils'
-import { getSession } from 'next-auth/react'
+import { fetchOptions, useFetch } from 'atomic-utils'
 
 const sessionFetchOptions = fetchOptions({
   url: '/auth/session',
