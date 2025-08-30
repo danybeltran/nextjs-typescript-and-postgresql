@@ -266,7 +266,6 @@ function ChartLegendContent({
   }) {
   const { config } = useChart()
 
-  // @ts-expect-error
   if (!payload?.length) {
     return null
   }
