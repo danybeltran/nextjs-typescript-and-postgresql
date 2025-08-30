@@ -2,14 +2,12 @@ import { ArrowLeft } from 'lucide-react'
 
 import PostCardSkeleton from '@/components/post/post-card-skeleton'
 import { Button } from '@/components/ui'
+import { BackButton } from '@/components/layout/back-button'
 
 export default function PostsLoading() {
   return (
     <section>
-      <div className='flex gap-1 items-center '>
-        <ArrowLeft size={18} />
-        Back
-      </div>
+      <BackButton href='/' />
       <header className='flex items-center justify-between my-4 md:my-8'>
         <h1 className='font-bold text-2xl'>All Posts</h1>
         <Button size='sm' variant='outline'>

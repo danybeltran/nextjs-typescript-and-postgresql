@@ -10,7 +10,7 @@ export const LINKS: {
   },
   {
     children: 'Profile',
-    href: '/profile'
+    href: '/settings'
   },
   {
     children: 'Github',

@@ -1,9 +1,10 @@
 import { revalidate, useObject, useServerAction } from 'atomic-utils'
 import { updateUserPreferences } from './actions'
-import { usePreferences, useUser } from '@/hooks'
+
 import { Button, Input, Textarea } from '@/components/ui'
 import { VscLoading } from 'react-icons/vsc'
 import { UpdatePreferencesPayload } from '@/schemas'
+import { usePreferences } from '@/hooks/use-preferences'
 
 export default function UpdateProfile() {
   const { data: preferences } = usePreferences()
