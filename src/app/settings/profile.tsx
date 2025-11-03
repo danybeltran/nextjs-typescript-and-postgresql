@@ -7,8 +7,16 @@ import { toast } from 'sonner'
 import { BackButton } from '@/components/layout/back-button'
 import { useClientSession } from '@/hooks/use-client-session'
 import { usePreferences } from '@/hooks/use-preferences'
-import { LogInIcon, RefreshCw } from 'lucide-react'
+import { LogInIcon, Pen, RefreshCw } from 'lucide-react'
 import { cn, revalidate } from 'atomic-utils'
+import { useState } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui'
 
 let previousRefreshToast: string | number = ''
 
@@ -19,7 +27,7 @@ export default function Profile() {
   if (!session) {
     return (
       <div className='space-y-6'>
-        <BackButton href='/' />
+        <BackButton fallbackLocation='/' />
         <section className='rounded-2xl border p-6 shadow-sm space-y-4 text-center'>
           <h2 className='text-xl font-semibold'>You haven't signed in yet</h2>
           <SigninDialog>
@@ -35,28 +43,31 @@ export default function Profile() {
 
   return (
     <div className='space-y-8'>
-      <BackButton href='/' />
+      <BackButton fallbackLocation='/' />
 
       <header className='flex items-center justify-between'>
         <h1 className='text-2xl font-bold'>Profile</h1>
-        <Button
-          variant='outline'
-          className='gap-2'
-          onClick={() => {
-            revalidate(['Session', 'Preferences'])
-            toast.dismiss(previousRefreshToast)
-            previousRefreshToast = toast('Session was refreshed', {
-              description: 'Updated successfully'
-            })
-          }}
-        >
-          <RefreshCw
-            className={cn('w-4 h-4', {
-              'animate-spin': refreshingSession
-            })}
-          />
-          Refresh
-        </Button>
+
+        <div className='flex items-center gap-x-2'>
+          <UpdateProfile />
+          <Button
+            variant='outline'
+            onClick={() => {
+              revalidate(['Session', 'Preferences'])
+              toast.dismiss(previousRefreshToast)
+              previousRefreshToast = toast('Session was refreshed', {
+                description: 'Updated successfully'
+              })
+            }}
+          >
+            <RefreshCw
+              className={cn('w-4 h-4', {
+                'animate-spin': refreshingSession
+              })}
+            />
+            Refresh
+          </Button>
+        </div>
       </header>
 
       <section className='rounded-2xl border p-6 shadow-sm space-y-4'>
@@ -68,6 +79,7 @@ export default function Profile() {
           />
           <div>
             <p className='text-lg font-semibold'>{preferences.user_fullname}</p>
+            <p className='text-sm text-neutral-400'>@{preferences.username}</p>
             <p className='text-sm text-muted-foreground'>
               {preferences.user_email}
             </p>
@@ -82,15 +94,6 @@ export default function Profile() {
             </p>
           </div>
         )}
-      </section>
-
-      <UpdateProfile />
-
-      <section className='rounded-2xl border p-6 shadow-sm'>
-        <p className='font-semibold mb-2'>Raw Data</p>
-        <pre className='overflow-x-auto text-xs bg-muted p-3 rounded-md'>
-          {JSON.stringify({ user: session, preferences }, null, 2)}
-        </pre>
       </section>
     </div>
   )

@@ -4,7 +4,7 @@ import { BackButton } from '@/components/layout/back-button'
 export default function PostIdLoading() {
   return (
     <section>
-      <BackButton href='/' />
+      <BackButton fallbackLocation='/' />
       <div className='max-w-4xl gap-2 mt-4 mx-auto flex flex-col lg:flex-row'>
         <section className='flex-10'>
           <header>

@@ -26,7 +26,7 @@ export default async function PostDetailsPage(props: PostPageProps) {
 
   return (
     <section>
-      <BackButton href='/posts' />
+      <BackButton fallbackLocation='/posts' />
       {post ? (
         <div className='max-w-4xl gap-2 mt-4 mx-auto flex flex-col lg:flex-row'>
           <div className='flex-10'>

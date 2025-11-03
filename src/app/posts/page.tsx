@@ -22,7 +22,7 @@ export default async function Posts() {
 
   return (
     <section>
-      <BackButton href='/' />
+      <BackButton fallbackLocation='/' />
       <header className='flex items-center justify-between my-4 md:my-8'>
         <h1 className='font-bold text-2xl'>All Posts</h1>
         <Link href='/posts/create'>

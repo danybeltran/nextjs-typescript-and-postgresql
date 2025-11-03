@@ -8,4 +8,5 @@ export const postSchema = z.object({
 export interface UpdatePreferencesPayload {
   user_fullname: string
   user_description: string
+  username: string
 }
