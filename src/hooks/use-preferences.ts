@@ -1,10 +1,13 @@
 import { Types } from '@/types'
-import { fetchOptions, useFetch } from 'atomic-utils'
+import { fetchOptions, revalidate, useFetch } from 'atomic-utils'
 
 const preferencesFetchOptions = fetchOptions<Types.Preferences>({
   key: 'Preferences',
   url: '/preferences',
-  maxCacheAge: '15 sec'
+  maxCacheAge: '15 sec',
+  onMutate() {
+    revalidate('Preferences')
+  }
 })
 
 export function usePreferences() {

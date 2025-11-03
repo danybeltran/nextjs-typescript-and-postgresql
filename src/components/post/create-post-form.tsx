@@ -23,6 +23,7 @@ import {
 
 import { postSchema } from '@/schemas'
 import { createPost } from '@/app/posts/actions'
+import { useState } from 'react'
 
 type FormSchema = z.infer<typeof postSchema>
 
@@ -40,13 +41,17 @@ export default function PostForm() {
   // To learn how to use the `useMutation` hook with server actions
   // visit https://httpr.vercel.app/docs/server_actions#server-mutations
 
+  const [postCreated, setPostCreated] = useState(false)
+
   const {
     loading,
     error,
     submit: submitPost
   } = useAction(createPost, {
     onResolve(data: Types.Post) {
+      setPostCreated(true)
       router.replace('/posts/' + data.id)
+      router.refresh()
     }
   })
 
@@ -101,8 +106,10 @@ export default function PostForm() {
           )}
         />
         <div className='flex justify-end'>
-          <Button disabled={loading} type='submit'>
-            {loading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
+          <Button disabled={loading || postCreated} type='submit'>
+            {(loading || postCreated) && (
+              <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+            )}
             Create Post
           </Button>
         </div>

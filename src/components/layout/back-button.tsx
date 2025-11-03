@@ -1,17 +1,32 @@
+'use client'
+
 import { ArrowLeft } from 'lucide-react'
-import { Button } from '../ui'
-import Link from 'next/link'
+import { Button } from '../ui' // Assuming 'Button' is a custom component
+import { useRouter } from 'next/navigation'
 
 export function BackButton({
-  href,
+  fallbackLocation = '/',
   children
-}: React.PropsWithChildren<{ href: string }>) {
+}: React.PropsWithChildren<{ fallbackLocation?: string }>) {
+  const router = useRouter()
+
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back()
+    } else {
+      router.push(fallbackLocation)
+    }
+  }
+
   return (
-    <Link href={href} className='max-w-min'>
-      <Button variant='ghost' size='sm' className='cursor-pointer'>
-        <ArrowLeft size={18} />
-        {children ?? 'Back'}
-      </Button>
-    </Link>
+    <Button
+      onClick={handleBack}
+      variant='ghost'
+      size='sm'
+      className='cursor-pointer'
+    >
+      <ArrowLeft size={18} />
+      {children ?? 'Back'}
+    </Button>
   )
 }
