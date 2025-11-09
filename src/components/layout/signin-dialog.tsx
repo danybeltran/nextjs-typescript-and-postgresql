@@ -23,11 +23,6 @@ export default function SigninDialog({
     signIn('google', {
       callbackUrl: location.href
     })
-      .then(() => {
-        // Try to get the new session from API
-        revalidate('GET /auth/session')
-      })
-      .catch(err => {})
   }
 
   return (

@@ -4,11 +4,9 @@ import './globals.css'
 import 'bs-icon/icons.css'
 import { AuthProvider, Navbar, ThemeProvider } from '@/components/layout'
 
-import { AtomicState } from 'atomic-utils'
-import { FetchConfig } from 'atomic-utils'
+import { AtomicState, FetchConfig } from 'atomic-utils'
 import { getServerSession } from 'next-auth'
 import { getUserPreferences } from '@/lib/server/preferences'
-import { cookies } from 'next/headers'
 import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
@@ -18,10 +16,7 @@ export const metadata: Metadata = {
 
 export default async function MainLayout({ children }: LayoutProps<'/'>) {
   const session = await getServerSession()
-
   const preferences = await getUserPreferences()
-
-  const serverTheme = (await cookies()).get('theme')?.value ?? 'system'
 
   return (
     <html suppressHydrationWarning>
@@ -34,11 +29,7 @@ export default async function MainLayout({ children }: LayoutProps<'/'>) {
         <ThemeProvider attribute='class'>
           <main className='min-h-screen'>
             <AuthProvider>
-              <AtomicState
-                value={{
-                  'server-theme': serverTheme
-                }}
-              >
+              <AtomicState>
                 <FetchConfig
                   baseUrl='/api'
                   value={{
