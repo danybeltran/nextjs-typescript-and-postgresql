@@ -7,16 +7,8 @@ import { toast } from 'sonner'
 import { BackButton } from '@/components/layout/back-button'
 import { useClientSession } from '@/hooks/use-client-session'
 import { usePreferences } from '@/hooks/use-preferences'
-import { LogInIcon, Pen, RefreshCw } from 'lucide-react'
+import { LogInIcon, RefreshCw } from 'lucide-react'
 import { cn, revalidate } from 'atomic-utils'
-import { useState } from 'react'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui'
 
 let previousRefreshToast: string | number = ''
 

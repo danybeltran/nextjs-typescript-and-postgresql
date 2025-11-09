@@ -2,20 +2,18 @@
 import { IconType } from 'react-icons'
 import { LuMoon, LuSun, LuMonitor } from 'react-icons/lu'
 
-import { useTheme } from 'next-themes'
-
 import { Button } from '@/components/ui/button'
-import Cookies from 'js-cookie'
-import { create } from 'atomic-utils'
-
-const useServerTheme = create<string>({
-  key: 'server-theme'
-})
+import { useTheme } from '@/hooks/use-theme'
+import { useEffect, useState } from 'react'
+import { useSecondRender } from 'atomic-utils'
 
 export function ThemeToggle() {
-  const [serverTheme] = useServerTheme()
+  const mounted = useSecondRender()
+  const { theme, setTheme } = useTheme()
 
-  const { setTheme, theme = serverTheme } = useTheme()
+  if (!mounted) {
+    return null
+  }
 
   const nextTheme: any = {
     light: 'dark',
@@ -28,7 +26,7 @@ export function ThemeToggle() {
     light: LuSun,
     dark: LuMoon,
     system: LuMonitor
-  }[theme] as IconType
+  }[theme as string] as IconType
 
   return (
     <Button
@@ -38,13 +36,10 @@ export function ThemeToggle() {
       suppressHydrationWarning
       onClick={() => {
         const newTheme = nextTheme[theme as string]
-        Cookies.set('theme', newTheme)
         setTheme(newTheme)
       }}
     >
-      {/* <BrowserOnly> */}
       <ThemeIcon className='text-xl' />
-      {/* </BrowserOnly> */}
       <span className='sr-only'>Toggle theme</span>
     </Button>
   )

@@ -23,7 +23,7 @@ export default function UpdateProfile() {
 
   const { data: preferences } = usePreferences()
 
-  const [newPreferences, newPreferencesActions] =
+  const [editablePreferences, newPreferencesActions] =
     useObject<UpdatePreferencesPayload>({
       user_fullname: preferences.user_fullname,
       user_description: preferences.user_description,
@@ -38,7 +38,7 @@ export default function UpdateProfile() {
     error,
     resetError
   } = useServerAction(updateUserPreferences, {
-    params: newPreferences,
+    params: editablePreferences,
     onResolve(updatedPreferences) {
       if (typeof updatedPreferences === 'object') {
         setPreferences(updatedPreferences)
@@ -47,8 +47,8 @@ export default function UpdateProfile() {
     }
   })
 
-  const hasChanges = ['user_fullname', 'user_description', 'username'].some(
-    preference => preferences[preference] !== newPreferences[preference]
+  const hasChanges = Object.keys(editablePreferences).some(
+    preference => preferences[preference] !== editablePreferences[preference]
   )
 
   return (
@@ -87,7 +87,7 @@ export default function UpdateProfile() {
               <Input
                 placeholder='Add a name'
                 disabled={savingPreferences}
-                value={newPreferences.user_fullname}
+                value={editablePreferences.user_fullname}
                 onChange={e =>
                   newPreferencesActions.setPartialValue({
                     user_fullname: e.target.value
@@ -103,7 +103,7 @@ export default function UpdateProfile() {
               <Input
                 placeholder='Add a username'
                 disabled={savingPreferences}
-                value={newPreferences.username}
+                value={editablePreferences.username}
                 onChange={e =>
                   newPreferencesActions.setPartialValue({
                     username: e.target.value.trim()
@@ -120,7 +120,7 @@ export default function UpdateProfile() {
                 className='h-24 resize-none'
                 disabled={savingPreferences}
                 placeholder='Add a description'
-                value={newPreferences.user_description}
+                value={editablePreferences.user_description}
                 onChange={e =>
                   newPreferencesActions.setPartialValue({
                     user_description: e.target.value
