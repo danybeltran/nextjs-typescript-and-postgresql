@@ -3,7 +3,7 @@ import { GoPlus } from 'react-icons/go'
 import { FaReact } from 'react-icons/fa'
 import { BiLogoPostgresql } from 'react-icons/bi'
 import { TbBrandNextjs } from 'react-icons/tb'
-import { SiPrisma, SiShadcnui, SiTailwindcss } from 'react-icons/si'
+import { SiPrisma, SiShadcnui } from 'react-icons/si'
 import { IoLogoGithub, IoLogoVercel } from 'react-icons/io5'
 
 import { Button } from '@/components/ui'
