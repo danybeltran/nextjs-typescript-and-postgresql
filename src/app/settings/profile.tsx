@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import SigninDialog from '@/components/layout/signin-dialog'
-import UpdateProfile from './update-profile'
+import UpdateProfile from './update-profile-form'
 import { toast } from 'sonner'
 import { BackButton } from '@/components/layout/back-button'
 import { useClientSession } from '@/hooks/use-client-session'

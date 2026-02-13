@@ -8,6 +8,7 @@ import { prisma } from '@/lib/server/prisma'
 import { RenderList } from 'atomic-utils'
 import { BackButton } from '@/components/layout/back-button'
 import { Metadata } from 'next'
+import CreatePostForm from './create-post-form'
 
 export const metadata: Metadata = {
   title: 'Posts'
@@ -25,11 +26,7 @@ export default async function Posts() {
       <BackButton fallbackLocation='/' />
       <header className='flex items-center justify-between my-4 md:my-8'>
         <h1 className='font-bold text-2xl'>All Posts</h1>
-        <Link href='/posts/create'>
-          <Button size='sm' variant='outline'>
-            Create Post
-          </Button>
-        </Link>
+        <CreatePostForm />
       </header>
 
       {posts.length === 0 ? (

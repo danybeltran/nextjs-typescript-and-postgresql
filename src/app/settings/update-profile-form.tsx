@@ -137,11 +137,7 @@ export default function UpdateProfile() {
           )}
 
           <div className='space-x-2 flex items-center justify-end'>
-            <Button
-              type='submit'
-              variant='outline'
-              disabled={savingPreferences || !hasChanges}
-            >
+            <Button type='submit' disabled={savingPreferences || !hasChanges}>
               {savingPreferences ? (
                 <VscLoading className='animate-spin' />
               ) : (

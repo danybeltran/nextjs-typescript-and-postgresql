@@ -4,8 +4,9 @@ import Menu from './menu'
 
 export default function Navbar() {
   return (
-    <header className='border-b border-neutral-100 dark:border-inherit  sticky top-0 z-50 h-14 items-center bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
-      <div className='max-w-(--breakpoint-2xl) mx-auto flex items-center h-full justify-between py-2 px-6 md:px-8'>
+    // Changed h-14 to a min-height or kept it consistent with the inner flex
+    <header className='sticky top-0 z-50 h-14 border-b border-neutral-100 bg-background/95 backdrop-blur dark:border-inherit supports-backdrop-filter:bg-background/60'>
+      <div className='mx-auto flex h-full max-w-(--breakpoint-2xl) items-center justify-between px-4 md:px-8'>
         <Menu />
       </div>
     </header>
