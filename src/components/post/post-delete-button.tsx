@@ -22,7 +22,26 @@ export default function PostDeleteButton({ postId }: { postId: string }) {
 
   const { reFetch, loading } = useAction(deletePost, {
     params: parseInt(postId),
-    onResolve: () => router.replace('/posts')
+    onResolve: () => {
+      // 1. Get the previous URL
+      const previousPage = document.referrer
+
+      // 2. Check if the previous page was the posts list
+      // We check for /posts specifically to handle the "back" vs "replace" logic
+      const cameFromPosts = previousPage.includes('/posts')
+
+      if (cameFromPosts) {
+        // Go back to keep the user's scroll position and filters on the list
+        router.back()
+      } else {
+        // If they landed here directly (e.g., from a link), go to the list
+        router.replace('/posts')
+      }
+
+      // 3. Refresh the data so the deleted post is gone
+      // A small delay ensures the router transition has started
+      setTimeout(() => router.refresh(), 100)
+    }
   })
 
   return (

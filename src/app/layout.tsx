@@ -27,7 +27,7 @@ export default async function MainLayout({ children }: LayoutProps<'/'>) {
 
       <body className={GeistSans.className}>
         <ThemeProvider attribute='class'>
-          <main className='min-h-screen'>
+          <main className='min-h-dvh'>
             <AuthProvider>
               <AtomicState>
                 <FetchConfig
@@ -38,7 +38,7 @@ export default async function MainLayout({ children }: LayoutProps<'/'>) {
                   }}
                 >
                   <Navbar />
-                  <div className='max-w-(--breakpoint-2xl) mx-auto py-8 px-6 md:px-8 overflow-x-auto'>
+                  <div className='max-w-(--breakpoint-2xl) mx-auto py-8 px-4 sm:px-6 md:px-8 overflow-x-auto'>
                     {children}
                   </div>
                   <Toaster />

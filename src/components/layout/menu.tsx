@@ -3,7 +3,6 @@ import Link from 'next/link'
 import {
   Button,
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogTitle,
@@ -34,7 +33,7 @@ export default function Menu() {
 
   return (
     <>
-      <Fragment key='Desktop menu'>
+      <Fragment key='Mobile menu'>
         <div className='md:hidden'>
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
@@ -42,7 +41,8 @@ export default function Menu() {
                 <Icon name='list' className='text-lg' />
               </Button>
             </DialogTrigger>
-            <DialogContent className='h-full max-w-screen w-screen dark:bg-background/95 dark:backdrop-blur dark:supports-[backdrop-filter]:bg-background/60 rounded-none'>
+            {/* Swapped h-full for h-dvh and max-w-screen for max-w-full */}
+            <DialogContent className='h-dvh max-w-full w-screen dark:bg-background/95 dark:backdrop-blur dark:supports-[backdrop-filter]:bg-background/60 rounded-none border-none'>
               <DialogTitle className='h-0 hidden'></DialogTitle>
               <DialogDescription className='h-0 hidden'></DialogDescription>
               <div className='flex flex-col items-center pt-16 gap-y-6'>
@@ -72,7 +72,7 @@ export default function Menu() {
         </div>
       </Fragment>
 
-      <Fragment key='Mobile menu'>
+      <Fragment key='Desktop menu'>
         <div className='space-x-3 hidden md:inline-block'>
           <Link className='font-bold w-16 h-auto' href={'/'}>
             NEXT.JS
