@@ -1,13 +1,9 @@
-import Link from 'next/link'
-import { headers } from 'next/headers'
-
-import { Button } from '@/components/ui'
+import { BackButton } from '@/components/layout/back-button'
 import PostCard from '@/components/post/post-card'
-
 import { prisma } from '@/lib/server/prisma'
 import { RenderList } from 'atomic-utils'
-import { BackButton } from '@/components/layout/back-button'
 import { Metadata } from 'next'
+import { headers } from 'next/headers'
 import CreatePostForm from './create-post-form'
 
 export const metadata: Metadata = {
