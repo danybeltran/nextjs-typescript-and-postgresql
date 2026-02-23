@@ -2,7 +2,7 @@
 import { IconType } from 'react-icons'
 import { LuMoon, LuSun, LuMonitor } from 'react-icons/lu'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui'
 import { useTheme } from '@/hooks/use-theme'
 import { useEffect, useState } from 'react'
 import { useSecondRender } from 'atomic-utils'

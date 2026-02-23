@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui'
 import SigninDialog from '@/components/layout/signin-dialog'
 import UpdateProfile from './update-profile-form'
 import { toast } from 'sonner'

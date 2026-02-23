@@ -7,7 +7,7 @@ import { AuthProvider, Navbar, ThemeProvider } from '@/components/layout'
 import { AtomicState, FetchConfig } from 'atomic-utils'
 import { getServerSession } from 'next-auth'
 import { getUserPreferences } from '@/lib/server/preferences'
-import { Toaster } from '@/components/ui/sonner'
+import { Toaster } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'Home',
