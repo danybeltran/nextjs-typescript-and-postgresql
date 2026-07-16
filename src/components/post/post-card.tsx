@@ -1,5 +1,4 @@
-'use client'
-import Link from 'next/link'
+import { Link } from '@tanstack/react-router'
 import ReactMarkdown from 'react-markdown'
 
 import {
@@ -28,7 +27,7 @@ export default function PostCard({ post }: { post: Types.Post }) {
       </CardContent>
       <CardFooter className='flex justify-end'>
         <Button size='sm' variant='outline' asChild>
-          <Link href={`/posts/${post.id}`}>View Post</Link>
+          <Link to="/posts/$id" params={{ id: post.id.toString() }}>View Post</Link>
         </Button>
       </CardFooter>
     </Card>

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { createFileRoute } from '@tanstack/react-router'
 import { GoPlus } from 'react-icons/go'
 import { FaReact } from 'react-icons/fa'
 import { BiLogoPostgresql } from 'react-icons/bi'
@@ -8,7 +8,11 @@ import { IoLogoGithub, IoLogoVercel } from 'react-icons/io5'
 
 import { Button } from '@/components/ui'
 
-export default function Page() {
+export const Route = createFileRoute('/')({
+  component: Page,
+})
+
+function Page() {
   return (
     <>
       <section className='space-y-6 pb-8 py-8 md:py-16 lg:py-20 '>
@@ -18,7 +22,7 @@ export default function Page() {
           </h1>
           <p>This is a starter project</p>
           <div className='flex gap-x-2 *:*:gap-x-2'>
-            <Link
+            <a
               href='https://github.com/danybeltran/nextjs-typescript-and-postgresql'
               target='_blank'
               rel='noreferrer'
@@ -27,15 +31,15 @@ export default function Page() {
                 <IoLogoGithub />
                 GitHub
               </Button>
-            </Link>
-            <Link
+            </a>
+            <a
               target='_blank'
               href='https://vercel.com/new/clone?repository-url=https://github.com/danybeltran/nextjs-typescript-and-postgresql'
             >
               <Button>
                 <IoLogoVercel /> Deploy
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -53,8 +57,8 @@ export default function Page() {
             <div className='flex h-[180px] flex-col justify-center gap-y-4 items-center rounded-md p-6'>
               <TbBrandNextjs size={40} />
               <div className='space-y-2'>
-                <h3 className='font-bold leading-normal'>Next.js 15</h3>
-                <p className='text-sm text-muted-foreground'>Next.js</p>
+                <h3 className='font-bold leading-normal'>TanStack Start</h3>
+                <p className='text-sm text-muted-foreground'>Full-stack React</p>
               </div>
             </div>
           </div>
@@ -104,14 +108,14 @@ export default function Page() {
         <div className='mx-auto flex max-w-232 flex-col items-center justify-center gap-4 text-center '>
           <p className='max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7'>
             The code is available on{' '}
-            <Link
+            <a
               href='https://github.com/danybeltran/nextjs-typescript-and-postgresql'
               target='_blank'
               rel='noreferrer'
               className='underline underline-offset-4'
             >
               GitHub
-            </Link>
+            </a>
             .{' '}
           </p>
         </div>

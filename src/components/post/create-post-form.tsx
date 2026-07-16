@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAction } from 'atomic-utils'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Types } from '@/types'
@@ -22,7 +22,7 @@ import {
 } from '@/components/ui'
 
 import { postSchema } from '@/schemas'
-import { createPost } from '@/app/posts/actions'
+import { createPost } from '@/components/post/actions'
 import { useState } from 'react'
 
 type FormSchema = z.infer<typeof postSchema>
@@ -50,8 +50,8 @@ export default function PostForm() {
   } = useAction(createPost, {
     onResolve(data: Types.Post) {
       setPostCreated(true)
-      router.replace('/posts/' + data.id)
-      router.refresh()
+      router.navigate({ to: '/posts/' + data.id })
+      router.invalidate()
     }
   })
 
@@ -62,7 +62,7 @@ export default function PostForm() {
       {error && (
         <Alert className='mb-4' variant='destructive'>
           <AlertCircle className='h-4 w-4' />
-          <AlertTitle>An error ocurred</AlertTitle>
+          <AlertTitle>An error occurred</AlertTitle>
         </Alert>
       )}
 

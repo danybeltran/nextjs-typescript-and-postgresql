@@ -2,7 +2,7 @@
 
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '../ui' // Assuming 'Button' is a custom component
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@tanstack/react-router'
 
 export function BackButton({
   fallbackLocation = '/',
@@ -12,9 +12,9 @@ export function BackButton({
 
   const handleBack = () => {
     if (window.history.length > 1) {
-      router.back()
+      router.history.back()
     } else {
-      router.push(fallbackLocation)
+      router.navigate({ to: fallbackLocation })
     }
   }
 

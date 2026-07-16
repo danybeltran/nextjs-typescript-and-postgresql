@@ -6,7 +6,7 @@ const sessionFetchOptions = fetchOptions({
   maxCacheAge: '15 sec',
   debounce: 100,
   transform(data) {
-    return 'user' in data ? data : null
+    return data && typeof data === 'object' && 'user' in data ? data : null
   }
 })
 

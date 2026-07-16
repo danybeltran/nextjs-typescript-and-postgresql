@@ -15,10 +15,11 @@ model Post {
 
 model Preferences {
   id                   Int    @id @default(autoincrement())
-  user_email           String
+  user_email           String @unique
   user_fullname        String
   user_profile_picture String
-  username             String
+  username             String @unique
   user_description     String
   // Add more customizations
 }
+

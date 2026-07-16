@@ -1,4 +1,4 @@
-import { getServerSession } from 'next-auth'
+import { getServerSession } from './auth'
 import { prisma } from './prisma'
 
 function generateUsernameWithRandomString(baseUsername: string): string {
@@ -17,7 +17,7 @@ export async function getUserPreferences() {
 
   if (!session?.user) return null!
 
-  const currentPreferences = await prisma.preferences.findFirst({
+  const currentPreferences = await prisma.preferences.findUnique({
     where: {
       user_email: session.user!.email!
     }
