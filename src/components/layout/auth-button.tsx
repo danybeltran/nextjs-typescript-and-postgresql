@@ -20,13 +20,13 @@ import {
   Button
 } from '@/components/ui'
 
+import { Link } from '@tanstack/react-router'
+import { LogInIcon, LogOutIcon, Settings } from 'lucide-react'
 import { useState } from 'react'
-import { signOut } from 'next-auth/react'
 import SigninDialog from './signin-dialog'
+import { signOut } from '@/lib/client/auth'
 import { useClientSession } from '@/hooks/use-client-session'
 import { usePreferences } from '@/hooks/use-preferences'
-import { LogInIcon, LogOutIcon, Settings } from 'lucide-react'
-import Link from 'next/link'
 
 export default function AuthButton() {
   const { data: session } = useClientSession()
@@ -80,7 +80,7 @@ export default function AuthButton() {
           <DropdownMenuLabel>{preferences.user_fullname}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild className='cursor-pointer'>
-            <Link href='/settings'>
+            <Link to='/settings'>
               <Settings /> Settings
             </Link>
           </DropdownMenuItem>

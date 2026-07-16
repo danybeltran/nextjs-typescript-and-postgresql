@@ -11,8 +11,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui'
-import Icon from 'bs-icon'
-import { signIn } from 'next-auth/react'
+import { signIn } from '@/lib/client/auth'
 import { FcGoogle } from 'react-icons/fc'
 import { LuLock } from 'react-icons/lu'
 

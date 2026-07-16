@@ -80,7 +80,6 @@ export default function UpdateProfile() {
             if (!hasChanges) e.preventDefault()
           }}
         >
-          <h3 className='text-lg font-semibold'>Update preferences</h3>
           <div>
             <label>
               <small>Full name</small>
@@ -99,7 +98,7 @@ export default function UpdateProfile() {
 
           <div>
             <label>
-              <small>Full name</small>
+              <small>Username</small>
               <Input
                 placeholder='Add a username'
                 disabled={savingPreferences}
@@ -120,7 +119,7 @@ export default function UpdateProfile() {
                 className='h-24 resize-none'
                 disabled={savingPreferences}
                 placeholder='Add a description'
-                value={editablePreferences.user_description}
+                value={editablePreferences.user_description ?? ''}
                 onChange={e =>
                   newPreferencesActions.setPartialValue({
                     user_description: e.target.value

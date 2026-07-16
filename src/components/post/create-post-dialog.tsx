@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAction } from 'atomic-utils'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Types } from '@/types'
@@ -27,12 +27,12 @@ import {
 } from '@/components/ui'
 
 import { postSchema } from '@/schemas'
-import { createPost } from '@/app/posts/actions'
+import { createPost } from '@/components/post/actions'
 import { useState } from 'react'
 
 type FormSchema = z.infer<typeof postSchema>
 
-export default function CreatePostForm() {
+export default function CreatePostDialog() {
   const router = useRouter()
 
   const form = useForm<FormSchema>({
@@ -42,9 +42,6 @@ export default function CreatePostForm() {
       content: ''
     }
   })
-
-  // To learn how to use the `useMutation` hook with server actions
-  // visit https://httpr.vercel.app/docs/server_actions#server-mutations
 
   const [postCreated, setPostCreated] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -56,7 +53,7 @@ export default function CreatePostForm() {
   } = useAction(createPost, {
     onResolve(data: Types.Post) {
       setPostCreated(true)
-      router.refresh()
+      router.invalidate()
       setTimeout(() => {
         setIsOpen(false)
       })
@@ -86,7 +83,7 @@ export default function CreatePostForm() {
           {error && (
             <Alert className='mb-4' variant='destructive'>
               <AlertCircle className='h-4 w-4' />
-              <AlertTitle>An error ocurred</AlertTitle>
+              <AlertTitle>An error occurred</AlertTitle>
             </Alert>
           )}
 

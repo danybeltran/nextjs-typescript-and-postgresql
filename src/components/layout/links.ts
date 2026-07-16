@@ -1,20 +1,21 @@
 export const LINKS: {
   children: string
-  href: string
+  to?: string
+  href?: string
   target?: string
   rel?: string
 }[] = [
   {
     children: 'Posts',
-    href: '/posts'
+    to: '/posts'
   },
   {
     children: 'Settings',
-    href: '/settings'
+    to: '/settings'
   },
   {
     children: 'Github',
-    href: 'https://github.com/danybeltran/nextjs-typescript-and-postgresql',
+    to: 'https://github.com/danybeltran/nextjs-typescript-and-postgresql',
     target: '_blank',
     rel: 'noreferrer'
   }

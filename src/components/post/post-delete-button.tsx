@@ -1,7 +1,7 @@
 'use client'
 import { useAction } from 'atomic-utils'
 import { Loader2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@tanstack/react-router'
 
 import {
   AlertDialog,
@@ -15,7 +15,7 @@ import {
   AlertDialogTrigger,
   Button
 } from '@/components/ui'
-import { deletePost } from '@/app/posts/actions'
+import { deletePost } from '@/components/post/actions'
 
 export default function PostDeleteButton({ postId }: { postId: string }) {
   const router = useRouter()
@@ -32,15 +32,15 @@ export default function PostDeleteButton({ postId }: { postId: string }) {
 
       if (cameFromPosts) {
         // Go back to keep the user's scroll position and filters on the list
-        router.back()
+        router.history.back()
       } else {
         // If they landed here directly (e.g., from a link), go to the list
-        router.replace('/posts')
+        router.navigate({ to: '/posts', replace: true })
       }
 
       // 3. Refresh the data so the deleted post is gone
       // A small delay ensures the router transition has started
-      setTimeout(() => router.refresh(), 100)
+      setTimeout(() => router.invalidate(), 100)
     }
   })
 

@@ -2,17 +2,19 @@
   "name": "nextjs-typescript-and-postgresql",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "npx prisma generate dev --name init && npx prisma db push && next dev",
-    "build": "npx prisma generate init && npx prisma db push && next build",
-    "migrate:dev": "npx prisma generate dev --name init",
-    "start": "next start"
+    "dev": "bun x prisma generate && bun x prisma db push && vite",
+    "build": "bun x prisma generate && bun x prisma db push && vite build",
+    "migrate:dev": "bun x prisma migrate dev",
+    "start": "vite preview"
   },
   "repository": {
     "type": "github",
     "url": "https://github.com/danybeltran/nextjs-typescript-and-mongodb"
   },
   "dependencies": {
+    "@auth/core": "^0.34.3",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^7.4.0",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -43,6 +45,8 @@
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@remixicon/react": "^4.9.0",
+    "@tanstack/react-router": "^1.170.18",
+    "@tanstack/react-start": "^1.168.28",
     "@types/pg": "^8.16.0",
     "atomic-utils": "^1.7.4",
     "autoprefixer": "^10.4.24",
@@ -59,8 +63,6 @@
     "input-otp": "^1.4.2",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.563.0",
-    "next": "^16.1.6",
-    "next-auth": "^4.24.13",
     "next-themes": "^0.4.6",
     "postcss": "^8.5.6",
     "radix-ui": "^1.4.3",
@@ -86,11 +88,16 @@
     "@prisma/config": "^7.4.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^25.2.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
     "prisma": "^7.4.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vinxi": "^0.5.11",
+    "vite": "^8.1.4",
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }

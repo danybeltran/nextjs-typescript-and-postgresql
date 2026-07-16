@@ -1,116 +1,73 @@
-### A Next.js template
+### A TanStack Start Template
 
-A Next.js app that uses Shadcn, Prisma ORM, <s>MongoDB</s> PostgreSQL and Next Auth
+A full-stack TanStack Start application template that uses React 19, Vite, Shadcn UI, Prisma ORM, PostgreSQL, and Auth.js (`@auth/core` Google OAuth).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdanybeltran%2Fnextjs-typescript-and-mongodb)
-
-### Updating deps
-
-To update the dependencies to their latest versions, run:
-
-```
-./scripts/update-deps.sh
-```
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdanybeltran%2Fnextjs-typescript-and-postgresql)
 
 ---
 
-### Development
+### Key Features
+- **Meta-framework:** TanStack Start (Vite-based architecture)
+- **SSR/Hydration:** Full server-side rendering support with type-safe loaders
+- **Styling:** Tailwind CSS v4 compiled natively via `@tailwindcss/vite`
+- **ORM & Database:** Prisma + PostgreSQL (Supabase integration ready)
+- **Authentication:** Framework-agnostic Auth.js (`@auth/core`) Google OAuth integration
+- **State & Fetching:** `atomic-utils` for client-side state caching and data queries
 
-You need to pass an env. variable with the MongoDB connection string, as well as any variables required by `next-auth`:
+---
 
+### Development Setup
+
+Create a `.env` file at the root of the project with the following environment variables:
+
+```env
+# Database Credentials (e.g., Supabase PostgreSQL)
+DATABASE_URL="postgresql://..."
+DIRECT_URL="postgresql://..."
+
+# Auth.js Secrets & OAuth Credentials
+NEXTAUTH_SECRET="your-openssl-generated-secret-key"
+GOOGLE_APP_CLIENT_ID="your-google-oauth-client-id"
+GOOGLE_APP_CLIENT_SECRET="your-google-oauth-client-secret"
 ```
-NEXTAUTH_SECRET=
-GOOGLE_APP_CLIENT_ID=
-GOOGLE_APP_CLIENT_SECRET=
-NEXTAUTH_URL=http://localhost:3000
-# Connect to Supabase via connection pooling with Supavisor.
-DATABASE_URL=
-# Direct connection to the database. Used for migrations.
-DIRECT_URL=
-```
 
-(You don't need `NEXTAUTH_URL` if you are deploying to Vercel)
-
-How to get these variables?
-
----
-
-`DATABASE_URL` and `DIRECT_URL`: Visit the [Supabase documentation](https://supabase.com/partners/integrations/prisma)
-
----
-
-<!--
-- [`MONGO_URI`](https://www.mongodb.com/docs/manual/reference/connection-string/)
-
-The connection string looks something like this:
-
-`mongodb+srv://<user>:<password>@cluster0.<org>.mongodb.net/<database_name>?retryWrites=true&w=majority`
-
-In your cluster, click **Connect**:
-
-![alt text](docs/connect-1.png)
-
-Under the **Connect your application** section, click **Drivers**:
-
-![alt text](docs/drivers.png)
-
-Click the Copy button next to the connection string:
-
-![alt text](docs/connection-string.png)
-
-Replace `<password>` with the password for your user. Ensure any option params are [URL encoded](https://dochub.mongodb.org/core/atlas-url-encoding).
-
---- -->
-
-- [`GOOGLE_APP_CLIENT_ID` and `GOOGLE_APP_CLIENT_SECRET`](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid)
-
----
-
-Use your preferred tool to generate the `NEXTAUTH_SECRET` hash:
-
-Using [This tool](https://generate-secret.vercel.app/32) is the quickest way to generate a hash. You can change the last segment of the url to get a hash of your preferred length, such as `https://generate-secret.vercel.app/44`
-
-**OpenSSL :**
+#### Starting the Dev Server
+The development server will run by default on port `3000` (configured in `vite.config.ts`):
 
 ```bash
-openssl rand -base64 32
+# Install dependencies
+bun install
+
+# Start the local development server (runs prisma generate/push internally)
+bun run dev
 ```
 
-**Urandom :**
+#### Production Build & Start
+To compile and test a production-ready build:
 
 ```bash
-head -c 32 /dev/urandom | base64
+# Build the client and SSR environments
+bun run build
+
+# Preview the production application
+bun run start
 ```
 
-**Python :**
+---
 
-```py
-import base64
-import os
+### Environment Variables & Credentials Guides
 
-random_bytes = os.urandom(32)
-base64_string = base64.b64encode(random_bytes).decode('utf-8')
-print(base64_string)
-```
+- **Supabase PostgreSQL Setup:** Visit the [Supabase Prisma Integration Docs](https://supabase.com/partners/integrations/prisma) to obtain your `DATABASE_URL` and `DIRECT_URL`.
+- **Google OAuth Setup:** Visit the [Google OAuth2 Credentials Guide](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid) to set up your OAuth credentials. 
+  - *Authorized redirect URI for local development:* `http://localhost:3000/api/auth/callback/google`
+- **Secret Key Generation:** Use one of the commands below to generate your `NEXTAUTH_SECRET` hash:
+  - **OpenSSL:** `openssl rand -base64 32`
+  - **Python:** `python3 -c "import secrets; print(secrets.token_urlsafe(32))"`
 
-**JavaScript :**
+---
 
-```js
-const crypto = require('crypto')
-
-const randomBytes = crypto.randomBytes(32)
-const base64String = randomBytes.toString('base64')
-console.log(base64String)
-```
-
-You can add those variables to a `.ENV` file (don't forget to add it to your `.gitignore` file!)
-
-Related documentation:
-
-- [`nextjs`](https://nextjs.org/docs)
-
-- [`next-auth`](https://next-auth.js.org/getting-started/introduction)
-
-- [`http-react`](https://httpr.vercel.app/docs)
-
-[Live preview](https://nextjs-typescript-and-mongodb-psi.vercel.app)
+### Related Documentation
+- [TanStack Start Documentation](https://tanstack.com/router/v1/docs/start/overview)
+- [TanStack Router Documentation](https://tanstack.com/router/v1/docs/guide/introduction)
+- [Auth.js Documentation](https://authjs.dev)
+- [Prisma ORM Documentation](https://www.prisma.io/docs)
