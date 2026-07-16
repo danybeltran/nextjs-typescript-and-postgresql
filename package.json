@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun x prisma generate && bun x prisma db push && vite",
-    "build": "bun x prisma generate && bun x prisma db push && vite build",
+    "dev": "bun x prisma generate && bun x prisma db push --accept-data-loss && vite",
+    "build": "bun x prisma generate && bun x prisma db push --accept-data-loss && vite build",
     "migrate:dev": "bun x prisma migrate dev",
     "start": "vite preview"
   },
