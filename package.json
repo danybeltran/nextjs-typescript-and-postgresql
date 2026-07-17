@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun x prisma generate && bun x prisma db push --accept-data-loss && vite",
-    "build": "bun x prisma generate && bun x prisma db push --accept-data-loss && vite build",
+    "build": "bun x prisma generate && vite build",
     "migrate:dev": "bun x prisma migrate dev",
     "start": "vite preview"
   },
