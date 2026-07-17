@@ -38,3 +38,6 @@ yarn-error.log*
 /dist
 /.output
 /src/routeTree.gen.ts
+
+# typescript build cache
+*.tsbuildinfo
